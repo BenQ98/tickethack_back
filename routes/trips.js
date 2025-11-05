@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
   // Construction dynamique du filtre MongoDB
   const filter = {};
 
-  if (departure) filter.departure = departure; // Exact match (meilleur pour filtrer correctement)
+  if (departure) filter.departure = { $regex: new RegExp(departure, "i") }; // Exact match (meilleur pour filtrer correctement)
   if (arrival) filter.arrival = arrival;
 
   // Filtrage de la date au bon format (00:00 → 23:59)
