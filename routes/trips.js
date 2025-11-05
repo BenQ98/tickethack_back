@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
   const filter = {};
 
   if (departure) filter.departure = { $regex: new RegExp(departure, "i") }; // Exact match (meilleur pour filtrer correctement)
-  if (arrival) filter.arrival = arrival;
+  if (arrival) filter.arrival = { $regex: new RegExp(arrival, "i") };
 
   // Filtrage de la date au bon format (00:00 → 23:59)
   if (date) {
